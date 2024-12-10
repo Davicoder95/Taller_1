@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('phone');
             $table->enum('gender', ['male', 'female', 'other']);
             $table->string('address');
-            $table->unsignedBigInteger('country_id')->unsigned();
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->timestamps();
         });
 
