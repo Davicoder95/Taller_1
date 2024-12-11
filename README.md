@@ -7,60 +7,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+#Creacion de la feature
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Análisis de Problema
+Cuando comencé a trabajar en el CRUD básico de usuarios, lo primero que pensé fue en hacer algo sencillo pero funcional. Mi objetivo principal era que cualquier persona pudiera crear, ver, editar y eliminar usuarios de una manera sencilla y directa. Como soy más de aprender haciendo, quise experimentar con las herramientas que Laravel ya ofrece para no complicarme demasiado. Sabía que Laravel tiene un sistema de Eloquent que me ayudaría a manejar los datos fácilmente, pero quería tener un control más específico sobre cómo se gestionaban los usuarios en el sistema. Quería que el proceso fuera simple para mí y para los usuarios finales.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Investigación de Soluciones
+No tuve que investigar mucho, ya que sabía que Laravel tiene todo lo necesario para un CRUD básico. Lo que más me interesaba era la forma de validar los datos que los usuarios ingresaran. Para eso, me fijé en cómo Laravel maneja las validaciones con los FormRequest. Sabía que Laravel hacía esto de una forma bastante estructurada, por lo que me decidí a utilizarlo. También me puse a leer sobre cómo se podían crear rutas de recursos para que Laravel generara automáticamente todas las rutas necesarias para las operaciones del CRUD. Luego, me concentré en cómo hacer que las vistas fueran fáciles de usar y agradables visualmente, por lo que me incliné por usar Blade para hacer los formularios y mostrar los datos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Elección de Solución
+Al final, decidí no complicarme. Usar las herramientas que Laravel ofrece por defecto era suficiente para lo que quería hacer. Para las rutas, aproveché las resource routes de Laravel, lo que me permitió ahorrar tiempo porque ya se encargaba de crear las rutas necesarias para crear, mostrar, editar y eliminar usuarios. Con respecto a las vistas, usé Blade, que es lo que más cómodo me resulta cuando tengo que trabajar con formularios y mostrar datos. Para la validación de datos utilicé FormRequest para asegurarme de que los usuarios no pudieran enviar datos incorrectos. Para el proceso de eliminación, usé un formulario de tipo DELETE, que al principio me dio un poco de problemas, pero con la directiva @method('DELETE') pude solucionarlo sin mucho esfuerzo.
 
-## Learning Laravel
+4. Depuración
+Al principio, todo parecía ir bien, pero como siempre, algunos pequeños problemas aparecieron. El primer desafío que tuve fue con las validaciones. Al principio, Laravel no me estaba mostrando los errores de validación correctamente, así que tuve que asegurarme de que los mensajes de error aparecieran en los formularios. Después, me topé con un problema al intentar eliminar usuarios, porque el formulario no estaba enviando la solicitud DELETE correctamente. Al revisar el código, me di cuenta de que olvidé agregar el token de CSRF, así que lo corregí rápidamente. Luego, el proceso de editar usuarios también me dio algunos dolores de cabeza. No estaba pasando los datos correctamente al formulario de edición, por lo que los campos no se autocompletaban. Esto lo solucioné revisando el controlador y asegurándome de que los valores correctos se enviaran a la vista de edición.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Finalización
+Finalmente, después de resolver todos los problemas que surgieron, todo empezó a funcionar como esperaba. Los formularios de crear usuarios validaban correctamente los datos, y los listados de usuarios mostraban la información de manera clara. El formulario de editar usuarios también funcionaba sin problemas y, lo mejor, el proceso de eliminar un usuario ahora se hacía sin error alguno. Todo estaba integrado de manera simple, pero eficaz, utilizando Blade para las vistas y Eloquent para manejar los datos. Estaba satisfecho con el resultado final porque todo estaba funcionando bien, y pude entregar un sistema limpio, fácil de usar y fácil de mantener.
