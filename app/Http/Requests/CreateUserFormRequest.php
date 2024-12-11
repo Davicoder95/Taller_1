@@ -27,7 +27,7 @@ class CreateUserFormRequest extends FormRequest
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|max:15',
             'address' => 'required|string|max:255',
-            'gender' => 'required|in:Male,Female,Other',
+            'gender' => 'required|in:Masculino,Femenino,Otro',
             'country_id' => 'required|exists:countries,id'
         ];
     }

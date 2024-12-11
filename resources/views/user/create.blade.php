@@ -74,9 +74,9 @@
                 <label for="gender" class="form-label">Género</label>
                 <select class="form-control" id="gender" name="gender" required>
                     <option value="" disabled selected>Selecciona una opción</option>
-                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Masculino</option>
-                    <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Femenino</option>
-                    <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Otro</option>
+                    <option value="Masculino" {{ old('gender') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                    <option value="Femenino" {{ old('gender') == 'Femenino' ? 'selected' : '' }}>Femenino</option>
+                    <option value="Otro" {{ old('gender') == 'Otro' ? 'selected' : '' }}>Otro</option>
                 </select>
                 @error('gender')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>

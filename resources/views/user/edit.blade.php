@@ -50,9 +50,9 @@
             <div class="col-md-6 mb-3">
                 <label for="gender" class="form-label">Género</label>
                 <select name="gender" id="gender" class="form-control" required>
-                    <option value="Male" {{ $user->gender == 'Male' ? 'selected' : '' }}>Masculino</option>
-                    <option value="Female" {{ $user->gender == 'Female' ? 'selected' : '' }}>Femenino</option>
-                </select>
+                    <option value="Masculino" {{ old('gender') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                    <option value="Femenino" {{ old('gender') == 'Femenino' ? 'selected' : '' }}>Femenino</option>
+                    <option value="Otro" {{ old('gender') == 'Otro' ? 'selected' : '' }}>Otro</option></select>
             </div>
         </div>
 

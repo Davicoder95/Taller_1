@@ -26,7 +26,7 @@ class RegisterUserFormRequest extends FormRequest
         'lastname' => 'required','string','max:255',
         'email' => 'required','string','email','max:255','unique:users',
         'password' => 'required','string','min:8','confirmed',
-        'gender' => 'required','string','in:male,female',
+        'gender' => 'required','string','in:Masculino,Femenino,Otro',
         'address' => 'required','string','max:255',
         'phone' => 'required','string','max:20',
         'country_id' => 'required|exists:countries,id'

@@ -36,9 +36,9 @@
                     <div class="mb-3">
                         <select name="gender" class="form-select" required>
                             <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
                         </select>
                     </div>
                     <div class="mb-3">

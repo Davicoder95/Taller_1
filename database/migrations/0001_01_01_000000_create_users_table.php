@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->enum('gender', ['male', 'female', 'other']);
+            $table->enum('gender', ['Masculino', 'Femenino', 'Otro']);
             $table->string('address');
             $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
