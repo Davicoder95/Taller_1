@@ -12,6 +12,9 @@
         <form action="{{ route('users.index') }}" method="GET" class="mb-3 d-flex ms-2">
             <input type="text" name="search" class="form-control" placeholder="Buscar usuarios..." value="{{ request()->query('search') }}">
             <button type="submit" class="btn btn-primary ms-2">Buscar</button>
+            @if(request()->query('search'))
+            <a href="{{ route('users.index') }}" class="btn btn-secondary ms-2">Cancelar</a>
+        @endif
         </form>
         <div class="d-flex align-items-center">
             <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-size: 15px;">

@@ -17,14 +17,13 @@ class UserController extends Controller
      */
     //protegemos la ruta
 
-    protected $discordWebhookController;
     protected $userSearchService;
 
-    public function __construct(DiscordWebhookController $discordWebhookController, UserSearchService $userSearchService)
+    public function __construct(UserSearchService $userSearchService)
     {
-        $this->discordWebhookController = $discordWebhookController;
         $this->userSearchService = $userSearchService;
     }
+
 
     public function index(Request $request)
     {
@@ -50,7 +49,6 @@ class UserController extends Controller
         $data = $request->validated();
         //dd($data);
         User::create($data);
-        $this->discordWebhookController->sendNewUserMessage($user->name, $user->lastname, $user->email);
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
 
