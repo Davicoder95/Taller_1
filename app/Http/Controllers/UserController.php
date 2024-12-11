@@ -7,15 +7,29 @@ use App\Http\Requests\UpdateUserFormRequest;
 use App\Models\User;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Services\UserSearchService;
+use App\Http\Controllers\DiscordWebhookController;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    //protegemos la ruta
+
+    protected $discordWebhookController;
+    protected $userSearchService;
+
+    public function __construct(DiscordWebhookController $discordWebhookController, UserSearchService $userSearchService)
     {
-        $users = User::with('country')->paginate(10);
+        $this->discordWebhookController = $discordWebhookController;
+        $this->userSearchService = $userSearchService;
+    }
+
+    public function index(Request $request)
+    {
+        $search = $request->query('search');
+        $users = $this->userSearchService->searchUsers($search);
         return view('user.index',compact ('users'));
     }
 
@@ -36,6 +50,7 @@ class UserController extends Controller
         $data = $request->validated();
         //dd($data);
         User::create($data);
+        $this->discordWebhookController->sendNewUserMessage($user->name, $user->lastname, $user->email);
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
 
@@ -44,7 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //dd($user); 
+        //dd($user);
         return view('user.show',compact('user'));
     }
 

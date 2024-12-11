@@ -2,37 +2,46 @@
 
 @section('content')
 <div class="container">
-    <h1>User Details</h1>
-    <table class="table">
-        <tr>
-            <th>Name:</th>
-            <td>{{ $user->name }}</td>
-        </tr>
-        <tr>
-            <th>Lastname:</th>
-            <td>{{ $user->lastname }}</td>
-        </tr>
-        <tr>
-            <th>Email:</th>
-            <td>{{ $user->email }}</td>
-        </tr>
-        <tr>
-            <th>Phone:</th>
-            <td>{{ $user->phone }}</td>
-        </tr>
-        <tr>
-            <th>Address:</th>
-            <td>{{ $user->address }}</td>
-        </tr>
-        <tr>
-            <th>Gender:</th>
-            <td>{{ $user->gender }}</td>
-        </tr>
-        <tr>
-            <th>Country:</th>
-            <td>{{ $user->country ? $user->country->name : 'No country assigned' }}</td>
-        </tr>
-    </table>
-    <a href="{{ route('users.index') }}" class="btn btn-primary">Back to List</a>
+    <div class="mb-3">
+        <a href="{{ route('users.index') }}" class="btn btn-dark">Volver</a>
+    </div>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Detalles del Usuario</h4>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Nombres</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->name }}</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Apellidos</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->lastname }}</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Correo</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Género</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->gender }}</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Teléfono</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->phone }}</p>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Dirección</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->address }}</p>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label fw-bold">País</label>
+                    <p class="form-control-plaintext border rounded px-3 py-2">{{ $user->country ? $user->country->name : 'No country assigned' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

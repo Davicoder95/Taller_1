@@ -32,7 +32,7 @@
 
     <!-- Pie de página -->
     <footer class="text-center mt-4">
-        <p>&copy; {{ date('Y') }} Mi Aplicación Laravel. Todos los derechos reservados.</p>
+        <p>&copy; {{ date('Y') }} DaviCoder. Todos los derechos reservados.</p>
     </footer>
 
     <!-- Scripts de Bootstrap -->

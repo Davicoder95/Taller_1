@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\UserSearchService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // se debe registrar los servicios creados
+        $this->app->singleton(UserSearchService::class, function($app){
+            return new UserSearchService();
+        });
     }
 
     /**

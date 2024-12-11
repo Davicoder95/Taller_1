@@ -18,12 +18,18 @@ class User extends Authenticatable
             'gender',
             'address',
             'phone',
+            'password',
+            'country_id',
         ];
 
         public function country()
         {
             return $this->belongsTo(Country::class);
         }
+
+        protected $hidden = [
+            'password', 'remember_token',
+        ];
 }
 
 
