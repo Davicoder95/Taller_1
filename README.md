@@ -7,60 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+#Realizacion de esta feature
+-Analisis de problema
+-Investigacion de soluciones
+-Eleccion de solucion 
+-Depuracion
+-Finalizacion
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Análisis de Problema
+Al comenzar con la implementación de la nueva feature, lo primero que hice fue analizar cuál era el objetivo principal: crear un login propio en Laravel, agregar un buscador de usuarios y configurar un webhook que enviara un mensaje a Discord cada vez que un usuario se registrara. Sabía que Laravel ya tiene su propio sistema de autenticación, pero mi idea era personalizarlo, dándole el control total sobre la forma en que los usuarios se registran e inician sesión. Además, el buscador tenía que ser eficiente, permitiendo a los usuarios buscar por diferentes parámetros como nombre, correo y apellido. Por último, el webhook era algo nuevo para mí, pero al investigar un poco más, me di cuenta de que integrar un webhook con Discord sería algo bastante sencillo usando Laravel y sus características.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. Investigación de Soluciones
+Una vez que entendí lo que necesitaba hacer, comencé a investigar las posibles soluciones. Para el login, sabía que Laravel tiene una solución integrada como Breeze o Jetstream, pero no quería usar algo tan genérico. Busqué maneras de personalizar la autenticación, configurando las rutas y controladores de manera que se ajustaran exactamente a lo que quería. En cuanto al buscador, pensé que con Eloquent sería suficiente para realizar búsquedas simples, por lo que me concentré en crear filtros para los campos más importantes como nombre, correo y apellido, asegurándome de que fueran lo más flexible y rápidos posibles. Y, para el webhook, me investigué un poco sobre cómo usar los webhooks de Discord. Me di cuenta de que no necesitaba complicarme demasiado, con una simple llamada HTTP podía enviar los datos del nuevo usuario a Discord y mostrarlo en un canal específico.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. Elección de Solución
+Después de investigar, me decidí por la solución más sencilla y personalizada. Para el login, decidí no usar Jetstream ni Breeze ya que no necesitaba toda la funcionalidad que estos ofrecían, solo quería tener un flujo de autenticación que pudiera controlar y personalizar a mi manera. Creé mis propios controladores y rutas para manejar el login y registro de usuarios. En cuanto al buscador, usé Eloquent y sus métodos where y orWhere para hacer que las búsquedas fueran flexibles y rápidas, y me aseguré de que ignorara las diferencias entre mayúsculas y minúsculas usando las funciones adecuadas. Para el webhook, como era algo nuevo para mí, simplemente creé un controlador con una función que enviara los datos al webhook de Discord, y lo hice lo más simple posible para asegurarme de que fuera fácil de integrar en cualquier parte del código.
 
-## Learning Laravel
+4. Depuración
+Aquí es donde las cosas realmente tomaron forma. Al principio, me encontré con algunos errores en el login, especialmente con la validación de los datos y los errores de inicio de sesión. Pero pronto me di cuenta de que solo necesitaba manejar un poco mejor las excepciones y los mensajes de error, así que agregué algo de lógica para mostrar mensajes más claros cuando algo fallaba. También, con el buscador, tuve que ajustar algunas consultas porque noté que no estaba obteniendo todos los resultados que esperaba, sobre todo con los filtros de búsqueda. Hice algunos ajustes en las consultas para asegurarme de que todo estuviera bien optimizado. En el caso del webhook, al principio no enviaba nada a Discord. Investigando, descubrí que había que hacer una pequeña corrección en cómo estaba enviando las solicitudes HTTP, así que modifiqué el código para asegurarme de que los datos se enviaran correctamente y con el formato adecuado. Además, me aseguré de que el webhook solo se activara cuando realmente se creara un usuario, y no por cualquier otro motivo.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Finalización
+Finalmente, después de ajustar todos los detalles y probar cada funcionalidad una vez más, me aseguré de que todo estuviera en su lugar. El login estaba funcionando como esperaba, y la validación de los datos de usuario ya no daba errores. El buscador ahora mostraba los resultados de manera eficiente y en tiempo real, y el webhook enviaba un mensaje a Discord cada vez que se registraba un nuevo usuario. Hice las pruebas finales para asegurarme de que no hubiera problemas de rendimiento y que todo estuviera funcionando correctamente. Todo estaba listo para ser desplegado. Fue un proceso que, aunque me dio algunos dolores de cabeza, me enseñó mucho y me permitió entender cómo personalizar Laravel para adaptarlo mejor a las necesidades del proyecto.
