@@ -81,41 +81,4 @@ class SendDiscordNotification
         }
     }
 
-    public function handleErrorOccurred(ErrorOccurred $event): void
-    {
-        try {
-            $embed = [
-                'title' => "Proyecto DaviCoder - Error en el sistema",
-                'color' => self::ERROR_COLOR,
-
-                'fields' => [
-                    [
-                        'name' => '📝 Mensaje de Error',
-                        'value' => $event->message,
-                        'inline' => false,
-                    ],
-                    [
-                        'name' => '📋 Detalles del Error',
-                        'value' => $event->errorDetails ?? 'No se proporcionaron detalles.',
-                        'inline' => false,
-                    ],
-                ],
-                'footer' => [
-                    'text' => implode(" | ", [
-                        '🕒 Notificación realizada el ' . now()->format('d/m/y H:i')
-                    ]),
-                ],
-                'timestamp' => now()->toIso8601String(),
-                'author' => [
-                    'name' => "⚠️ Sistema de Monitoreo de Errores",
-                ],
-            ];
-
-            $this->discordWebhook->sendEmbed($embed);
-
-        } catch (\Exception $e) {
-            Log::error("Error al enviar notificación de error a Discord: " . $e->getMessage());
-        }
-    }
-
 }

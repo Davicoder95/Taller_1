@@ -56,14 +56,7 @@
             @endforeach
         </tbody>
     </table>
-    <form action="{{ url('/import') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Import</button>
-        </form>
-
         <a href="{{ url('/export') }}">Export</a>
-
     <div class="text-center mt-3">
         {{ $users->count() }} resultados
     </div>

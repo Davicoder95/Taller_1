@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Services\UserSearchService;
-use App\Http\Controllers\DiscordWebhookController;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -98,7 +97,5 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Usuario eliminado');
     }
     //exportar datos a un excel
-    public function export(){
-        return Excel::download(new UserExport ,'Users.xlsl');
-    }
+    
 }

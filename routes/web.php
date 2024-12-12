@@ -19,5 +19,3 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
 });
 
-Route::get('/send-discord-message', [DiscordWebhookController::class, 'sendMessage'])
-    ->name('send.discord.message');
