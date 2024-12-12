@@ -7,33 +7,29 @@ use App\Http\Requests\RegisterUserFormRequest;
 use App\Http\Requests\LoginUserFormRequest;
 use App\Models\Country;
 use App\Models\User;
+use App\Events\UserCreated;
+use App\Events\UserLogin;
 use App\Http\Controllers\DiscordWebhookController;
+use Illuminate\Support\Facades\Event;
 
 class AuthController extends Controller
 {
-    public $discord;
-
-    public function __construct(DiscordWebhookController $discord){
-        $this->discord = $discord;
-    }
 
     public function register (RegisterUserFormRequest $request){
         $request->validated();
-       // Crear el nuevo usuario y guardarlo en la variable $user
-    $user = User::create([
-        'name' => $request->name,
-        'lastname' => $request->lastname,
-        'email' => $request->email,
-        'password' => bcrypt($request->password),
-        'gender' => $request->gender,
-        'address' => $request->address,
-        'phone' => $request->phone,
-        'country_id' => $request->country_id,
-    ]);
+        $user= User::create([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'country_id' => $request->country_id,
+        ]);
+        Event::dispatch(new UserCreated($user));
 
-    // Enviar el mensaje al webhook de Discord con los datos del usuario
-    $this->discord->sendNewUserMessage($user->name, $user->lastname, $user->email);
-return redirect()->route('login')->with('success', 'Usuario registrado exitosamente');
+        return redirect()->route('login')->with('success', 'Usuario registrado exitosamente');
     }
 
     public function ShowLogin(){
@@ -50,6 +46,7 @@ return redirect()->route('login')->with('success', 'Usuario registrado exitosame
 
         if(auth()->attempt($credentials)){
             $request->session()->regenerate();
+            Event::dispatch(new UserLogin(auth()->user()));
             return redirect()->route('dashboard');
         }
         return back()->withErrors(['email' => 'Credenciales incorrectas']);

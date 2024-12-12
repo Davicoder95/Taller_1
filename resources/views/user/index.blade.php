@@ -2,13 +2,8 @@
 
 @section('content')
 <div class="container">
-
-    <!-- Contenedor flex para organizar los elementos en la parte superior -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-
-        <!-- Botón de "Crear nuevo usuario" que ocupará el espacio disponible -->
         <a href="{{ route('users.create') }}" class="btn btn-dark flex-grow-2">Crear nuevo usuario</a>
-
         <form action="{{ route('users.index') }}" method="GET" class="mb-3 d-flex ms-2">
             <input type="text" name="search" class="form-control" placeholder="Buscar usuarios..." value="{{ request()->query('search') }}">
             <button type="submit" class="btn btn-primary ms-2">Buscar</button>
@@ -61,6 +56,13 @@
             @endforeach
         </tbody>
     </table>
+    <form action="{{ url('/import') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file">
+        <button type="submit">Import</button>
+        </form>
+
+        <a href="{{ url('/export') }}">Export</a>
 
     <div class="text-center mt-3">
         {{ $users->count() }} resultados

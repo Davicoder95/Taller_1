@@ -9,6 +9,10 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Services\UserSearchService;
 use App\Http\Controllers\DiscordWebhookController;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
 
 class UserController extends Controller
 {
@@ -48,6 +52,12 @@ class UserController extends Controller
     {
         $data = $request->validated();
         //dd($data);
+        //contraseña generada en base a el name y lastname del user
+        $name = Str::lower(str_replace(' ', '', $data['name']));// se eliminan los espacion para evitar conflictos
+        $lastname = Str::lower(str_replace(' ', '', $data['lastname']));
+        $password = $name . $lastname;
+        // Asignar la contraseña generada al array de datos
+        $data['password'] = Hash::make($password);
         User::create($data);
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
     }
@@ -86,5 +96,9 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado');
+    }
+    //exportar datos a un excel
+    public function export(){
+        return Excel::download(new UserExport ,'Users.xlsl');
     }
 }
